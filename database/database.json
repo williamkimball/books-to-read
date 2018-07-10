@@ -3,9 +3,16 @@
     {
       "title": "Sabriel",
       "summary": "Bells and Death and a Wall and a Cat named Moggett",
-      "length": "223",
+      "length": "225",
       "read": "false",
       "id": 1
+    },
+    {
+      "title": "The Name of the Wind",
+      "summary": "A boy learns the true name of things and does a whole bunch of other stuff.",
+      "length": "987",
+      "read": "false",
+      "id": 2
     }
   ]
 }
