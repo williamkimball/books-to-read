@@ -25,22 +25,33 @@ const buildEditbookForm = (book) => {
     $("#newBtn").toggle();
     $("#addBtn").toggle();
     $("#formArticle").toggle();
-    $(".title-form-field").val(book.title)
-
-    $(".summary-form-field").val(book.summary)
-
-    $(".length-form-field").val(book.length)
-
-    const editButton = document.createElement("button")
-    editButton.textContent = "Update";
-    editButton.id = `${book.id}`
-    editButton.className = "editBtn"
-    editButton.addEventListener("click", function () {
+    $(".title-form-field").val(book.title).on("keyup", function () {
+        if (event.keyCode === 13){
         editExistingbook(book);
-        $("#addBtn").show();
-        $(editButton).remove();
+        // $("#newBtn").show();
+        }
     })
-    $("#formArticle").append(editButton)
+
+    $(".summary-form-field").val(book.summary).on("keyup", function () {
+        if (event.keyCode === 13){
+            editExistingbook(book);
+            // $("#newBtn").show();
+            }
+    })
+
+    $(".length-form-field").val(book.length).on("keyup", function () {
+        if (event.keyCode === 13){
+            editExistingbook(book);
+            // $("#newBtn").show();
+            }
+    })
+
+    // const editButton = document.createElement("button")
+    // editButton.textContent = "Update";
+    // editButton.id = `${book.id}`
+    // editButton.className = "editBtn"
+
+
 
 
 }
@@ -87,15 +98,21 @@ const book = Object.create({}, {
                     deleteButton.addEventListener("click", deleteBook)
                     bookSection.appendChild(deleteButton)
 
-                    const editButton = document.createElement("button")
-                    editButton.textContent = "Edit"
-                    editButton.addEventListener("click", editBook)
-                    bookSection.appendChild(editButton)
+                    // const editButton = document.createElement("button")
+                    // editButton.textContent = "Edit"
+                    // editButton.addEventListener("click", editBook)
+                    // bookSection.appendChild(editButton)
                 } else if (key === "read") {
                     if (book.read === "true") {
                         bookSection.style.display = "none";
                     }
-                }
+                }else if (key === "title") {
+                    const titleElement = document.createElement("h3")
+                    titleElement.textContent = `Title: ${book[key]}`
+                    bookSection.appendChild(titleElement)
+
+                    titleElement.addEventListener("click", editBook)
+                    }
                 else {
                     const paraElement = document.createElement("p")
                     paraElement.textContent = `${key}: ${book[key]}`

@@ -3,6 +3,8 @@
     padding: 1%;
     border-radius: 25px;
     margin: 1%;
+    max-width: 50%;
+    text-align: center; 
 }
 
 .checkbox {
