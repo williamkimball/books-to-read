@@ -7,14 +7,20 @@ const addNewBook = () => {
     const newBookTitle = $(".title-form-field").val()
     const newBookSummary = $(".summary-form-field").val()
     const newBookLength = $(".length-form-field").val()
-    console.log("add button clicked", newBookTitle, newBookSummary, newBookLength);
-    $("input").val("")
-    $("#formArticle").toggle();
-    bookCollectionModule.postBook(newBookTitle, newBookSummary, newBookLength)
-        .then((response) => {
-            console.log("response", response)
-            bookListModule.buildBookList()
-        })
+    if (newBookTitle !== "", newBookSummary !== "", newBookLength !== "") {
+        console.log("add button clicked", newBookTitle, newBookSummary, newBookLength);
+        $("input").val("")
+        $("#formArticle").toggle();
+        $("#newBtn").toggle();
+
+        bookCollectionModule.postBook(newBookTitle, newBookSummary, newBookLength)
+            .then((response) => {
+                console.log("response", response)
+                bookListModule.buildBookList()
+            })
+    } else {
+        alert("Please fill out all fields")
+    }
 }
 
 const showForm = () => {
@@ -55,7 +61,7 @@ const bookForm = Object.create({}, {
             summarySection.appendChild(summaryLabel)
 
             const summaryField = document.createElement("input")
-            summaryField.setAttribute("type", "tel")
+            summaryField.setAttribute("type", "text")
             summaryField.className = "summary-form-field"
             summarySection.appendChild(summaryField)
 
@@ -81,6 +87,7 @@ const bookForm = Object.create({}, {
 
             document.querySelector("#display-container").appendChild(formArticle)
             $("#formArticle").toggle();
+
         }
     }
 })
