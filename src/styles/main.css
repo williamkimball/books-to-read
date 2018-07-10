@@ -1,14 +1,21 @@
+.list-books-article article {
+    display: flex;
+}
+
 .list-books-article section {
     border: solid 3px black;
     padding: 1%;
     border-radius: 25px;
     margin: 1%;
-    max-width: 50%;
-    text-align: center; 
+    max-width: 100%;
+    text-align: center;
+    display: block;
+
+    
 }
 
 .checkbox {
-    display: inline;
+    display: flex;
 }
 
 .labelTxt {
