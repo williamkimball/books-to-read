@@ -91,7 +91,12 @@ const book = Object.create({}, {
                     editButton.textContent = "Edit"
                     editButton.addEventListener("click", editBook)
                     bookSection.appendChild(editButton)
-                } else {
+                } else if (key === "read") {
+                    if (book.read === "true") {
+                        bookSection.style.display = "none";
+                    }
+                }
+                else {
                     const paraElement = document.createElement("p")
                     paraElement.textContent = `${key}: ${book[key]}`
                     bookSection.appendChild(paraElement)
