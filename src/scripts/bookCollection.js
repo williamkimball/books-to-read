@@ -37,7 +37,7 @@ const bookCollection = Object.create({}, {
         value: function (id, name, phone, address) {
             return $.ajax({
                 url: `http://localhost:3000/books/${id}`,
-                method: "PUT",
+                method: "PATCH",
                 data: {
                     title: name,
                     summary: phone,

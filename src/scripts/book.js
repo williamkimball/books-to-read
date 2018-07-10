@@ -12,6 +12,7 @@ const deleteBook = () => {
 }
 
 const editBook = () => {
+    // console.log(event.currentTarget)
     const bookId = event.currentTarget.parentNode.id
     bookCollectionModule.getBook(bookId)
         .then((response) => {
@@ -26,24 +27,24 @@ const buildEditbookForm = (book) => {
     $("#addBtn").toggle();
     $("#formArticle").toggle();
     $(".title-form-field").val(book.title).on("keyup", function () {
-        if (event.keyCode === 13){
-        editExistingbook(book);
-        // $("#newBtn").show();
+        if (event.keyCode === 13) {
+            editExistingbook(book);
+            // $("input").val("")
         }
     })
 
     $(".summary-form-field").val(book.summary).on("keyup", function () {
-        if (event.keyCode === 13){
+        if (event.keyCode === 13) {
             editExistingbook(book);
-            // $("#newBtn").show();
-            }
+            // $("input").val("")
+        }
     })
 
     $(".length-form-field").val(book.length).on("keyup", function () {
-        if (event.keyCode === 13){
+        if (event.keyCode === 13) {
             editExistingbook(book);
-            // $("#newBtn").show();
-            }
+            // $("input").val("")
+        }
     })
 
     // const editButton = document.createElement("button")
@@ -58,7 +59,7 @@ const buildEditbookForm = (book) => {
 
 const editExistingbook = (book) => {
     const bookId = book.id
-    console.log(bookId);
+    // console.log(bookId);
     const bookTitle = $(".title-form-field").val()
     const bookSummary = $(".summary-form-field").val()
     const bookLength = $(".length-form-field").val()
@@ -77,19 +78,26 @@ const book = Object.create({}, {
 
             const bookSection = document.createElement("section")
             bookSection.id = `${book.id}`
-            let checkbox = $("<input>").attr("type", "checkbox").attr("class", "checkbox")
-            checkbox.appendTo(bookSection)
-            $("<p>").text("Mark as read").attr("class", "labelTxt").appendTo(bookSection)
+            const bookArticle = document.createElement("article")
+            if (book.read === "false") {
+                let checkbox = $("<input>").attr("type", "checkbox").attr("class", "checkbox")
+                checkbox.appendTo(bookArticle)
+                $("<p>").text("Mark as read").attr("class", "labelTxt").appendTo(bookArticle)
 
-            checkbox.on("click", function () {
-                if ($(this).is(":checked")) {
-                    let elementId = $(this).parent().attr("id")
-                    $(this).parent().toggle();
-                   bookCollectionModule.toggleRead(elementId, true)
-                } else {
-                    bookCollectionModule.toggleRead(elementId, false)
-                }
-            })
+                checkbox.on("click", function () {
+                    if ($(this).is(":checked")) {
+                        //  console.log($(this).next().next())
+
+                        let elementId = $(this).next().next().attr("id")
+                        $(this).parent().toggle();
+                        $(this).next().remove();
+                        $(this).remove()
+                        bookCollectionModule.toggleRead(elementId, true)
+                    } else {
+                        bookCollectionModule.toggleRead(elementId, false)
+                    }
+                })
+            }
 
             for (key in book) {
                 if (key === "id") {
@@ -106,21 +114,22 @@ const book = Object.create({}, {
                     if (book.read === "true") {
                         bookSection.style.display = "none";
                     }
-                }else if (key === "title") {
+                } else if (key === "title") {
                     const titleElement = document.createElement("h3")
                     titleElement.textContent = `Title: ${book[key]}`
                     bookSection.appendChild(titleElement)
 
                     titleElement.addEventListener("click", editBook)
-                    }
+                }
                 else {
                     const paraElement = document.createElement("p")
                     paraElement.textContent = `${key}: ${book[key]}`
                     bookSection.appendChild(paraElement)
                 }
             }
+            bookArticle.appendChild(bookSection);
 
-            return bookSection
+            return bookArticle
         }
     }
 })

@@ -1,37 +1,11 @@
 {
   "books": [
     {
-      "title": "dfs",
-      "summary": "sdfg",
-      "length": "sdfg",
-      "read": "true",
-      "id": 3
-    },
-    {
-      "title": "asfd",
-      "summary": "ff",
-      "length": "dddd",
-      "read": "true",
-      "id": 4
-    },
-    {
-      "title": "dddd",
-      "summary": "dasfd",
-      "length": "aaa",
-      "read": "true",
-      "id": 5
-    },
-    {
       "title": "Sabriel",
-      "summary": "Bells",
-      "length": "111",
-      "id": 6
-    },
-    {
-      "title": "asfd",
-      "summary": "asd",
-      "length": "asdf",
-      "id": 7
+      "summary": "Bells and Death and a Wall and a Cat named Moggett",
+      "length": "223",
+      "read": "false",
+      "id": 1
     }
   ]
 }
