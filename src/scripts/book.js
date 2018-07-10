@@ -13,21 +13,23 @@ const deleteBook = () => {
 
 const editBook = () => {
     const bookId = event.currentTarget.parentNode.id
-    bookCollectionModule.getbook(bookId)
+    bookCollectionModule.getBook(bookId)
         .then((response) => {
-            console.log("book to be edited", response.id);
+            // console.log("book to be edited", response.id);
             buildEditbookForm(response)
         })
 }
 
 const buildEditbookForm = (book) => {
 
-    $("#addBtn").hide();
-    $(".name-form-field").val(book.name)
+    $("#newBtn").toggle();
+    $("#addBtn").toggle();
+    $("#formArticle").toggle();
+    $(".title-form-field").val(book.title)
 
-    $(".phone-form-field").val(book.phone)
+    $(".summary-form-field").val(book.summary)
 
-    $(".addr-form-field").val(book.address)
+    $(".length-form-field").val(book.length)
 
     const editButton = document.createElement("button")
     editButton.textContent = "Update";
@@ -46,13 +48,15 @@ const buildEditbookForm = (book) => {
 const editExistingbook = (book) => {
     const bookId = book.id
     console.log(bookId);
-    const bookName = $(".name-form-field").val()
-    const bookPhone = $(".phone-form-field").val()
-    const bookAddress = $(".addr-form-field").val()
-    bookCollectionModule.putbook(bookId, bookName, bookPhone, bookAddress)
+    const bookTitle = $(".title-form-field").val()
+    const bookSummary = $(".summary-form-field").val()
+    const bookLength = $(".length-form-field").val()
+    bookCollectionModule.putBook(bookId, bookTitle, bookSummary, bookLength)
         .then(() => {
-            bookListModule.buildbookList()
+            bookListModule.buildBookList()
             $("input").val("")
+            $("#formArticle").toggle();
+
         })
 }
 
@@ -62,6 +66,19 @@ const book = Object.create({}, {
 
             const bookSection = document.createElement("section")
             bookSection.id = `${book.id}`
+            let checkbox = $("<input>").attr("type", "checkbox").attr("class", "checkbox")
+            checkbox.appendTo(bookSection)
+            $("<p>").text("Mark as read").attr("class", "labelTxt").appendTo(bookSection)
+
+            checkbox.on("click", function () {
+                if ($(this).is(":checked")) {
+                    let elementId = $(this).parent().attr("id")
+                    $(this).parent().toggle();
+                   bookCollectionModule.toggleRead(elementId, true)
+                } else {
+                    bookCollectionModule.toggleRead(elementId, false)
+                }
+            })
 
             for (key in book) {
                 if (key === "id") {

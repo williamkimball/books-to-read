@@ -1,0 +1,14 @@
+.list-books-article section {
+    border: solid 3px black;
+    padding: 1%;
+    border-radius: 25px;
+    margin: 1%;
+}
+
+.checkbox {
+    display: inline;
+}
+
+.labelTxt {
+    display: inline;
+}

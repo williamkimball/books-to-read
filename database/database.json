@@ -1,16 +1,11 @@
 {
   "books": [
     {
-      "title": "aa",
-      "summary": "sss",
-      "length": "ddd",
-      "id": 1
-    },
-    {
-      "title": "asdf",
-      "summary": "fff",
-      "length": "sss",
-      "id": 2
+      "title": "dfs",
+      "summary": "sdfg",
+      "length": "sdfg",
+      "read": "true",
+      "id": 3
     }
   ]
 }

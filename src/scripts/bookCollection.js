@@ -9,7 +9,8 @@ const bookCollection = Object.create({}, {
                 data: {
                     title: name,
                     summary: phone,
-                    length: address
+                    length: address,
+                    read: false
                 }
             })
         }
@@ -41,6 +42,17 @@ const bookCollection = Object.create({}, {
                     title: name,
                     summary: phone,
                     length: address
+                }
+            })
+        }
+    },
+    "toggleRead": {
+        value: function (id, tf) {
+            return $.ajax({
+                url: `http://localhost:3000/books/${id}`,
+                method: "PATCH",
+                data: {
+                    read: tf
                 }
             })
         }

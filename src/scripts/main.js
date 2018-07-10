@@ -20,7 +20,7 @@
 // When a user visits the dashboard
 // Then all the books should be displayed
 
-// *Given a user wants to mark a book as watched
+// *Given a user wants to mark a book as read
 // When the user is viewing their book list
 // Then there should be a checkbox next to each book that, when clicked, should mark the book as read in the database
 // And prevent the book from being displayed in the list
