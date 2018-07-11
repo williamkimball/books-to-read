@@ -17,15 +17,20 @@ const editBook = () => {
     bookCollectionModule.getBook(bookId)
         .then((response) => {
             // console.log("book to be edited", response.id);
-            buildEditbookForm(response)
+            buildEditbookForm(response, bookId)
         })
 }
 
-const buildEditbookForm = (book) => {
+const buildEditbookForm = (book, bookId) => {
 
     $("#newBtn").toggle();
     $("#addBtn").toggle();
-    $("#formArticle").toggle();
+    // $("#formArticle").toggle();
+    console.log(document.querySelector(`#${bookId}`))
+
+   let newTitle = $("<textArea").text($(".titleSec"))
+   console.log(newTitle)
+
     $(".title-form-field").val(book.title).on("keyup", function () {
         if (event.keyCode === 13) {
             editExistingbook(book);
@@ -79,6 +84,7 @@ const book = Object.create({}, {
             const bookSection = document.createElement("section")
             bookSection.id = `${book.id}`
             const bookArticle = document.createElement("article")
+            bookArticle.id = `${book.title}-${book.id}`
             if (book.read === "false") {
                 let checkbox = $("<input>").attr("type", "checkbox").attr("class", "checkbox")
                 checkbox.appendTo(bookArticle)
@@ -116,19 +122,22 @@ const book = Object.create({}, {
                     }
                 } else if (key === "title") {
                     const titleElement = document.createElement("h3")
-                    titleElement.textContent = `Title: ${book[key]}`
+                    titleElement.textContent = `Title: ${book[key]}`;
+                    titleElement.className = "titleSec"
                     bookSection.appendChild(titleElement)
 
                     titleElement.addEventListener("click", editBook)
                 }  else if (key === "summary") {
                     const summaryElement = document.createElement("p")
-                    summaryElement.textContent = `Sumary: ${book[key]}`
+                    summaryElement.textContent = `Summary: ${book[key]}`
+                    summaryElement.className = "summarySec"
                     bookSection.appendChild(summaryElement)
 
                     summaryElement.addEventListener("click", editBook)
                 }  else if (key === "length") {
                     const lengthElement = document.createElement("p")
                     lengthElement.textContent = `Length: ${book[key] } pages`
+                    lengthElement.className = "lengthSec"
                     bookSection.appendChild(lengthElement)
 
                     lengthElement.addEventListener("click", editBook)
