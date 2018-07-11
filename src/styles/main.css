@@ -1,8 +1,15 @@
+body {
+    background-color: #424242;
+    color: #FAFAFA;
+}
+
 .list-books-article article {
     display: flex;
 }
 
 .list-books-article section {
+    background-color: #3A4A4D;
+    color: #FAFAFA;
     border: solid 3px black;
     padding: 1%;
     border-radius: 25px;
@@ -16,8 +23,10 @@
 
 .checkbox {
     display: flex;
+    align-self: center;
 }
 
 .labelTxt {
     display: inline;
+    align-self: center;
 }

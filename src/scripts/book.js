@@ -120,6 +120,18 @@ const book = Object.create({}, {
                     bookSection.appendChild(titleElement)
 
                     titleElement.addEventListener("click", editBook)
+                }  else if (key === "summary") {
+                    const summaryElement = document.createElement("p")
+                    summaryElement.textContent = `Sumary: ${book[key]}`
+                    bookSection.appendChild(summaryElement)
+
+                    summaryElement.addEventListener("click", editBook)
+                }  else if (key === "length") {
+                    const lengthElement = document.createElement("p")
+                    lengthElement.textContent = `Length: ${book[key] } pages`
+                    bookSection.appendChild(lengthElement)
+
+                    lengthElement.addEventListener("click", editBook)
                 }
                 else {
                     const paraElement = document.createElement("p")
